@@ -1,4 +1,3 @@
-// Add this directive at the top of the file to ensure it's treated as a Client Component
 "use client";
 
 import React from "react";
