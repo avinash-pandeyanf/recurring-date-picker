@@ -12,9 +12,9 @@ const useDatePickerStore = create((set) => ({
   startDate: new Date(),
   endDate: null,
   recurrencePattern: "daily", // default pattern
-  recurrenceInterval: 1, // every 1 day/week/month/year
+  recurrenceInterval: 1,
   selectedDaysOfWeek: [], // for weekly recurrence
-  nthDayOfMonth: { dayOfWeek: 2, nth: 2 }, // Example: 2nd Tuesday
+  nthDayOfMonth: { dayOfWeek: 2, nth: 2 },
   previewDates: [],
 
   setStartDate: (date) => set({ startDate: date }),
@@ -73,13 +73,11 @@ const useDatePickerStore = create((set) => ({
 
 export default useDatePickerStore;
 
-// Helper function to get the nth occurrence of a specific day in a month
 const getNthDayOfMonth = (date, nthDayOfMonth) => {
   const { dayOfWeek, nth } = nthDayOfMonth; // e.g., { dayOfWeek: 2, nth: 2 } for 2nd Tuesday
   let monthStart = new Date(date.getFullYear(), date.getMonth(), 1); // First day of the month
   let day = getDay(monthStart); // Get the day of the week for the first day of the month
 
-  // Calculate the number of days to the first occurrence of the desired day (e.g., first Tuesday)
   let diff = (dayOfWeek - day + 7) % 7;
   let nthDay = setDate(monthStart, 1 + diff + (nth - 1) * 7);
 
